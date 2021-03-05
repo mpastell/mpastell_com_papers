@@ -1,0 +1,291 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Short Introduction to MATLAB for Agtek481</title><meta name="generator" content="MATLAB 8.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-02-19"><meta name="DC.source" content="agtek481_intro.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Short Introduction to MATLAB for Agtek481</h1><!--introduction--><p><b>Matti Pastell</b> 19.2.2013</p><p>This only a very short intro, I have written a longer one in Finnish: <a href="http://papers.mpastell.com/matlab_opas.pdf">Matlab-opas</a> and <a href="http://code.google.com/p/yagtom/">YAGTOM</a> is a much better English guide.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Importing data</a></li><li><a href="#6">Basic operations</a></li><li><a href="#8">Loops</a></li><li><a href="#9">Plotting</a></li><li><a href="#14">Signal processing</a></li></ul></div><h2>Importing data<a name="1"></a></h2><p>Clear workspace</p><pre class="codeinput">clear; clc;
+</pre><p><b>MATLAB binary format</b></p><p>Matlab has its own format (".mat") that is very convinient and can save the entire workspace, but most other programs can't read it. You can simply use the format with <tt>load</tt> and <tt>save</tt> commands.</p><pre class="codeinput"><span class="comment">%Load a .mat file from the current directory, it contains variable |kavely|</span>
+load(<span class="string">'kavely.mat'</span>)
+</pre><p><b>Working with text files</b></p><pre class="codeinput"><span class="comment">%You can use a dataset array to read text files in Matlab</span>
+walk = dataset(<span class="string">'File'</span>, <span class="string">'walking.txt'</span>, <span class="string">'ReadVarNames'</span>, false);
+walk.Properties.VarNames = {<span class="string">'Date'</span>, <span class="string">'Time'</span>, <span class="string">'X'</span>, <span class="string">'Y'</span>, <span class="string">'Z'</span>};
+</pre><p><b>Excel files</b></p><pre class="codeinput"><span class="comment">%Read in worksheet called field_corr</span>
+field_corr = xlsread(<span class="string">'Exercise_6_data.xls'</span>, <span class="string">'field_corr'</span>);
+</pre><p><b>Images</b></p><pre class="codeinput">fieldImage = imread(<span class="string">'Exercise_6_map.jpeg'</span>);
+</pre><h2>Basic operations<a name="6"></a></h2><p>See: <a href="http://yagtom.googlecode.com/svn/trunk/html/matrixOperations.html">http://yagtom.googlecode.com/svn/trunk/html/matrixOperations.html</a></p><p><b>Indexing</b> Extract first column to X etc.</p><pre class="codeinput">X = kavely(:, 1);
+Y = kavely(:, 2);
+Z = kavely(:, 3);
+</pre><p><b>Basic calculations</b></p><pre class="codeinput">average = mean(kavely);
+total = sum(kavely);
+stdev = std(kavely);
+<span class="comment">%Add too vectors together</span>
+sumXY = X + Y;
+<span class="comment">%Scale X to zero mean and unit variance</span>
+Xzero = X - mean(X);
+Xscaled = Xzero/std(Xzero);
+</pre><h2>Loops<a name="8"></a></h2><p>Calculate the difference between two elements of X</p><pre class="codeinput">n = length(X);
+<span class="keyword">for</span> i=2:n
+    Xdiff(i-1) = X(i) - (X(i-1));
+<span class="keyword">end</span>
+<span class="comment">%Do the same without a loop</span>
+Xdiff2 = diff(X);
+</pre><h2>Plotting<a name="9"></a></h2><p>See also: <a href="http://yagtom.googlecode.com/svn/trunk/html/plotting.html">http://yagtom.googlecode.com/svn/trunk/html/plotting.html</a></p><p><b>Time series</b></p><pre class="codeinput"><span class="comment">%Plot a whole array</span>
+plot(kavely)
+
+<span class="comment">%Make a time axis in seconds</span>
+n = size(kavely, 1);
+<span class="comment">%Sample rate is 250Hz</span>
+t = linspace(0, n/250, n);
+<span class="comment">%Plot with time and labels, use export setup from figure menu to save</span>
+plot(t, kavely);
+xlabel(<span class="string">'time (s)'</span>)
+ylabel(<span class="string">'Voltage (V)'</span>)
+legend(<span class="string">'X'</span>, <span class="string">'Y'</span>, <span class="string">'Z'</span>)
+</pre><img vspace="5" hspace="5" src="agtek481_intro_01.png" alt=""> <p><b>Plot several variables in same figure</b></p><pre class="codeinput">plot(t, X)
+hold <span class="string">on</span>
+plot(t, Y, <span class="string">'r'</span>)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="agtek481_intro_02.png" alt=""> <p><b>Subplots</b></p><pre class="codeinput">subplot(221)
+plot(t, X)
+subplot(222)
+plot(t, Y)
+subplot(223)
+plot(t, Z)
+</pre><img vspace="5" hspace="5" src="agtek481_intro_03.png" alt=""> <p><b>Several figures at the same time</b></p><pre class="codeinput">figure(1)
+plot(t, X)
+figure(2)
+plot(t, Y)
+</pre><img vspace="5" hspace="5" src="agtek481_intro_04.png" alt=""> <img vspace="5" hspace="5" src="agtek481_intro_05.png" alt=""> <p><b>Image</b></p><pre class="codeinput">imshow(fieldImage)
+</pre><pre class="codeoutput">Warning: Image is too big to fit on screen; displaying at 50% 
+</pre><img vspace="5" hspace="5" src="agtek481_intro_06.png" alt=""> <h2>Signal processing<a name="14"></a></h2><p>Use the <tt>sptool</tt> for filters and spectrum to learn the concepts</p><p><b>Moving average and median filter</b></p><pre class="codeinput">maX = smooth(X, 9);
+medX = medfilt1(X, 9);
+
+plot(t, X)
+hold <span class="string">on</span>
+plot(t, maX, <span class="string">'r'</span>);
+hold <span class="string">on</span>
+plot(t, medX, <span class="string">'g'</span>);
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="agtek481_intro_07.png" alt=""> <p><b>Decimation</b> Decrease the sample rate of x to 10th of original and create new time axis for plotting</p><pre class="codeinput">X10 = decimate(X, 10);
+n = size(X10, 1);
+t10 = linspace(0, n/25, n); <span class="comment">%25Hz is the decimated sample rate</span>
+
+<span class="comment">% Plot the original data and decimated data</span>
+
+plot(t, X)
+hold <span class="string">on</span>
+plot(t10, X10, <span class="string">'r'</span>)
+</pre><img vspace="5" hspace="5" src="agtek481_intro_08.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2012b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Short Introduction to MATLAB for Agtek481
+% *Matti Pastell* 19.2.2013
+%
+% This only a very short intro, I have written a longer one in 
+% Finnish: <http://papers.mpastell.com/matlab_opas.pdf Matlab-opas> and 
+% <http://code.google.com/p/yagtom/ YAGTOM>
+% is a much better English guide.
+
+
+%% Importing data
+% Clear workspace
+clear; clc;
+
+%%
+% *MATLAB binary format*
+%
+% Matlab has its own format (".mat") that is very convinient and can save the entire
+% workspace, but most other programs can't read it. You can simply use the
+% format with |load| and |save| commands.
+
+%Load a .mat file from the current directory, it contains variable |kavely|
+load('kavely.mat')
+
+%%
+% *Working with text files*
+%
+%You can use a dataset array to read text files in Matlab
+walk = dataset('File', 'walking.txt', 'ReadVarNames', false);
+walk.Properties.VarNames = {'Date', 'Time', 'X', 'Y', 'Z'};
+
+%%
+% *Excel files*
+%
+%Read in worksheet called field_corr
+field_corr = xlsread('Exercise_6_data.xls', 'field_corr');
+
+%%
+% *Images*
+fieldImage = imread('Exercise_6_map.jpeg');
+
+
+%% Basic operations 
+% See: <http://yagtom.googlecode.com/svn/trunk/html/matrixOperations.html>
+% 
+% *Indexing*
+% Extract first column to X etc.
+
+X = kavely(:, 1);
+Y = kavely(:, 2);
+Z = kavely(:, 3);
+
+%%
+% *Basic calculations*
+average = mean(kavely);
+total = sum(kavely);
+stdev = std(kavely);
+%Add too vectors together
+sumXY = X + Y;
+%Scale X to zero mean and unit variance
+Xzero = X - mean(X);
+Xscaled = Xzero/std(Xzero);
+
+%%% Loops
+% Calculate the difference between two elements of X
+n = length(X);
+for i=2:n
+    Xdiff(i-1) = X(i) - (X(i-1));
+end
+%Do the same without a loop
+Xdiff2 = diff(X);
+
+%% Plotting
+% See also: <http://yagtom.googlecode.com/svn/trunk/html/plotting.html>
+%
+% *Time series*
+
+%Plot a whole array
+plot(kavely)
+
+%Make a time axis in seconds
+n = size(kavely, 1);
+%Sample rate is 250Hz
+t = linspace(0, n/250, n);
+%Plot with time and labels, use export setup from figure menu to save
+plot(t, kavely);
+xlabel('time (s)')
+ylabel('Voltage (V)')
+legend('X', 'Y', 'Z')
+
+%%
+% *Plot several variables in same figure*
+plot(t, X)
+hold on
+plot(t, Y, 'r')
+hold off
+
+%%
+% *Subplots*
+subplot(221)
+plot(t, X)
+subplot(222)
+plot(t, Y)
+subplot(223)
+plot(t, Z)
+
+%%
+% *Several figures at the same time*
+figure(1)
+plot(t, X)
+figure(2)
+plot(t, Y)
+
+%%
+% *Image*
+imshow(fieldImage)
+
+%% Signal processing
+% Use the |sptool| for filters and spectrum to learn the concepts
+
+%% 
+% *Moving average and median filter*
+maX = smooth(X, 9);
+medX = medfilt1(X, 9);
+
+plot(t, X)
+hold on
+plot(t, maX, 'r');
+hold on
+plot(t, medX, 'g');
+hold off
+
+%%
+% *Decimation*
+% Decrease the sample rate of x to 10th of original and create new time
+% axis for plotting
+X10 = decimate(X, 10);
+n = size(X10, 1);
+t10 = linspace(0, n/25, n); %25Hz is the decimated sample rate
+
+% Plot the original data and decimated data
+
+plot(t, X)
+hold on
+plot(t10, X10, 'r')
+
+
+
+
+##### SOURCE END #####
+--></body></html>
